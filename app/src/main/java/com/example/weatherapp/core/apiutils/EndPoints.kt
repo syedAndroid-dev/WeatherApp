@@ -1,18 +1,11 @@
-package com.digivalsolutions.digilearn.core.apiutils
+package com.example.weatherapp.core.apiutils
 
 //Defining Api Routes
 
 object EndPoints {
 
-    //ChoseInstitute
+    //WeatherApp
+    const val LOGIN = "/data/2.5/onecall"
 
-    //Login
-    const val LOGIN = "api/method/login"
-    //SignUp
 
-    //ForgotPassword
-
-    //Dashboard
-    const val GET_LOGGED_USER = "api/method/frappe.auth.get_logged_user"
-    const val GET_DASHBOARD_COURSE_LIST = "api/method/lms.lms.utils.get_courses"
 }

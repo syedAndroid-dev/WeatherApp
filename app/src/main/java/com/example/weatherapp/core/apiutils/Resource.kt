@@ -1,4 +1,4 @@
-package com.digivalsolutions.digilearn.core.apiutils
+package com.example.weatherapp.core.apiutils
 
 sealed class Resource<T>(
     val data : T? = null,

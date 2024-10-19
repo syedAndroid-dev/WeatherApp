@@ -1,6 +1,7 @@
 package com.example.weatherapp.core.apiutils
 
 import android.util.Log
+import com.example.weatherapp.core.utils.Constants.baseUrl
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.engine.cio.endpoint
@@ -30,7 +31,6 @@ import javax.inject.Singleton
 @Singleton
 class BaseApiClient @Inject constructor() {
 
-    var baseUrl: String = "https://auth-staging.gcp.digivalitsolutions.com/api/v0/auth"//DEFAULT_BASEURL
     private var authToken : String = ""
 
     val apiClient = HttpClient(CIO) {

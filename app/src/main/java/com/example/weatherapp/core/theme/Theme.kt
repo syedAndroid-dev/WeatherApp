@@ -1,6 +1,5 @@
 package com.example.weatherapp.core.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -9,7 +8,16 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+
+val darkBlue = Color(0xFF085783)
+val DarkBlue40 = Color(0xFF009bbd)
+val greyNatural = Color(0xFF111827)
+
+val appLightBackGround = Brush.horizontalGradient(colors = listOf(DarkBlue40,darkBlue))
+val appDarkBackGround = Brush.horizontalGradient(colors = listOf(greyNatural,greyNatural))
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,

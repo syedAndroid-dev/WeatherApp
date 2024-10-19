@@ -1,4 +1,4 @@
-package com.digivalsolutions.digilearn.core.apiutils
+package com.example.weatherapp.core.apiutils
 
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName

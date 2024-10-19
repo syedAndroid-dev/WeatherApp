@@ -133,6 +133,9 @@ dependencies {
     annotationProcessor(libs.room.compiler)
     implementation(libs.work.manager)
 
+    //DataStore
+    implementation(libs.data.store.core)
+
     //test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -140,6 +143,7 @@ dependencies {
     androidTestImplementation(platform(libs.composeBom))
 
     androidTestImplementation(libs.junit)
+    androidTestImplementation(libs.rules)
     androidTestImplementation(libs.rules)
     androidTestImplementation(libs.runner)
     androidTestImplementation(libs.mockito)
