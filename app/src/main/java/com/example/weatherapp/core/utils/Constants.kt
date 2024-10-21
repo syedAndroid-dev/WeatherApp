@@ -1,6 +1,17 @@
 package com.example.weatherapp.core.utils
 
 object Constants {
-    var baseUrl: String = "https://api.openweathermap.org/data/2.5/onecall?lat=12.9082847623315&lon=77.65197822993314&units=imperial&appid=b143bb707b2ee117e62649b358207d3e"
+    var baseUrl: String = "https://api.openweathermap.org"
 
+    const val DB_NAME = "UserDetailsDb.db"
+    const val USER_DETAILS = "UserDetails"
+    const val USER_ID = "UserId"
+    const val USER_NAME = "UserName"
+    const val USER_EMAIL = "UserEmail"
+}
+
+enum class WeatherType{
+    CLOUD,
+    RAIN,
+    CLEAR
 }

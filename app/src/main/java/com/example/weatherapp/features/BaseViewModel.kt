@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 @HiltViewModel
-class BaseViewModel @Inject constructor():ViewModel() {
+open class BaseViewModel @Inject constructor():ViewModel() {
 
     @Inject lateinit var appNavigator: AppNavigation
 

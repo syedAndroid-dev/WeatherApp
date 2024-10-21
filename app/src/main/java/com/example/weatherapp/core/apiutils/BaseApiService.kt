@@ -25,8 +25,7 @@ open class BaseApiService @Inject constructor() {
     ): Resource<T> {
         return try {
             val response: HttpResponse = apiToBeCalled()
-            val cookies = response.headers.getAll(HttpHeaders.SetCookie)
-            Log.e("isApiSuccess","${response.status.isSuccess()}")
+            Log.e("isApiSuccess", "${response.status.isSuccess()}")
             if (response.status.isSuccess()) {
                 Resource.Success(data = response.body())
             } else {

@@ -29,6 +29,11 @@ import com.example.weatherapp.core.utils.customesnackbar.SnackBarColor
 import com.example.weatherapp.core.utils.customesnackbar.SnackBarDuration
 import com.example.weatherapp.core.utils.customesnackbar.SnackBarPosition
 import com.example.weatherapp.features.BaseViewModel
+import com.example.weatherapp.features.addusers.presentation.AddUsersRoute
+import com.example.weatherapp.features.auth.presentation.LoginScreenRoute
+import com.example.weatherapp.features.home.presentation.HomeScreenRoute
+import com.example.weatherapp.features.splash.SplashScreen
+import com.example.weatherapp.features.weatherdetails.presentation.WeatherScreenRoute
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -82,7 +87,7 @@ fun WeatherAppNavigationGraph(
                 .weight(1f)
                 .background(brush = if (isSystemInDarkTheme()) appDarkBackGround else appLightBackGround),
             navController = navController,
-            startDestination = Destination.SplashScreen,
+            startDestination = Destination.HomeScreen,
             enterTransition = {
                 slideIntoContainer(
                     AnimatedContentTransitionScope.SlideDirection.Left,
@@ -98,27 +103,27 @@ fun WeatherAppNavigationGraph(
         ) {
             //SplashScreen
             composable<Destination.SplashScreen> {
-
+                SplashScreen()
             }
 
             //LoginScreen
             composable<Destination.LoginScreen> {
-
+                LoginScreenRoute()
             }
 
             //DashboardScreen
             composable<Destination.HomeScreen> {
-
+                HomeScreenRoute()
             }
 
             //AddUsersScreen
             composable<Destination.AddUserScreen> {
-
+                AddUsersRoute()
             }
 
             //WeatherScreen
             composable<Destination.WeatherDetails> {
-
+                WeatherScreenRoute()
             }
         }
 

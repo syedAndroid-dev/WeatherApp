@@ -4,9 +4,12 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
 import javax.inject.Inject
 
-class AppNavigationImpl @Inject constructor(): AppNavigation {
+class AppNavigationImpl @Inject constructor() : AppNavigation {
 
-    override val navigationChannel = Channel<NavigationIntent>(capacity = Int.MAX_VALUE, onBufferOverflow = BufferOverflow.DROP_LATEST)
+    override val navigationChannel = Channel<NavigationIntent>(
+        capacity = Int.MAX_VALUE,
+        onBufferOverflow = BufferOverflow.DROP_LATEST
+    )
 
     override suspend fun navigateBack(route: Destination?, inclusive: Boolean) {
         navigationChannel.send(

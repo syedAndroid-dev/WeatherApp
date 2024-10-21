@@ -44,7 +44,6 @@ import com.example.weatherapp.core.utils.exitAnimation
 import java.util.Timer
 import kotlin.concurrent.schedule
 
-
 sealed class SnackBarPosition {
     data object Top : SnackBarPosition()
 
@@ -53,31 +52,31 @@ sealed class SnackBarPosition {
     data object Float : SnackBarPosition()
 }
 
-sealed class SnackBarColor(val color: Color){
-    data object SUCCESS: SnackBarColor(success)
-    data object ERROR: SnackBarColor(com.example.weatherapp.core.theme.error)
-    data object TextWhite: SnackBarColor(textWhite)
-    data class CustomColor(val customColor: Color): SnackBarColor(customColor)
+sealed class SnackBarColor(val color: Color) {
+    data object SUCCESS : SnackBarColor(success)
+    data object ERROR : SnackBarColor(com.example.weatherapp.core.theme.error)
+    data object TextWhite : SnackBarColor(textWhite)
+    data class CustomColor(val customColor: Color) : SnackBarColor(customColor)
 }
 
-sealed class SnackBarDuration(val time: Long){
+sealed class SnackBarDuration(val time: Long) {
     data object LONG : SnackBarDuration(10000L)
-    data object SHORT: SnackBarDuration(3000L)
-    data object INFINITE: SnackBarDuration(6000000L)
+    data object SHORT : SnackBarDuration(3000L)
+    data object INFINITE : SnackBarDuration(6000000L)
 }
 
 @Composable
 internal fun CustomSnackBar(
     state: ModifiedSnackBarState,
     snackBarPosition: SnackBarPosition,
-    containerColor : SnackBarColor,
-    contentColor : SnackBarColor,
-    snackBarDuration : SnackBarDuration,
-    verticalPadding : Dp,
-    horizontalPadding : Dp,
+    containerColor: SnackBarColor,
+    contentColor: SnackBarColor,
+    snackBarDuration: SnackBarDuration,
+    verticalPadding: Dp,
+    horizontalPadding: Dp,
     icon: ImageVector?,
-    withDismissAction : Boolean,
-){
+    withDismissAction: Boolean,
+) {
     var showSnackBar by remember { mutableStateOf(false) }
     val infoMessage by rememberUpdatedState(newValue = state.message.value)
     val timer = Timer("Animation Timer", true)
@@ -86,7 +85,7 @@ internal fun CustomSnackBar(
         key1 = state.updateState
     ) {
         showSnackBar = true
-        timer.schedule(snackBarDuration.time){
+        timer.schedule(snackBarDuration.time) {
             showSnackBar = false
         }
 
@@ -106,7 +105,7 @@ internal fun CustomSnackBar(
                     is SnackBarPosition.Float -> 24.dp
                 }
             ),
-        verticalArrangement = when(snackBarPosition) {
+        verticalArrangement = when (snackBarPosition) {
             is SnackBarPosition.Top -> Arrangement.Top
             is SnackBarPosition.Bottom -> Arrangement.Bottom
             is SnackBarPosition.Float -> Arrangement.Bottom
@@ -115,18 +114,18 @@ internal fun CustomSnackBar(
     ) {
         AnimatedVisibility(
             visible = state.isNotEmpty() && showSnackBar,
-            enter = when(snackBarPosition) {
+            enter = when (snackBarPosition) {
                 is SnackBarPosition.Top -> enterAnimation
                 is SnackBarPosition.Bottom -> enterAnimation
                 is SnackBarPosition.Float -> fadeIn()
             },
-            exit = when(snackBarPosition) {
+            exit = when (snackBarPosition) {
                 is SnackBarPosition.Top -> exitAnimation
                 is SnackBarPosition.Bottom -> exitAnimation
                 is SnackBarPosition.Float -> fadeOut()
             }
         ) {
-            Row (
+            Row(
                 modifier = Modifier
                     .fillMaxWidth(
                         fraction = when (snackBarPosition) {
@@ -145,12 +144,12 @@ internal fun CustomSnackBar(
                     )
                     .padding(vertical = verticalPadding, horizontal = horizontalPadding)
                     .animateContentSize()
-            ){
-                Row (
+            ) {
+                Row(
                     modifier = Modifier
                         .weight(4f),
                     verticalAlignment = Alignment.CenterVertically
-                ){
+                ) {
                     icon?.let {
                         Icon(
                             imageVector = icon,
@@ -168,7 +167,7 @@ internal fun CustomSnackBar(
                         maxLines = 1
                     )
                 }
-                if(withDismissAction){
+                if (withDismissAction) {
                     IconButton(
                         onClick = {
                             showSnackBar = false

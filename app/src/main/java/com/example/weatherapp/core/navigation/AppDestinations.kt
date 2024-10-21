@@ -4,7 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 sealed class Destination(val route : String){
-
     @Serializable
     data object RootModule : Destination("root")
 
@@ -26,5 +25,4 @@ sealed class Destination(val route : String){
     //WeatherDetails
     @Serializable
     data object WeatherDetails : Destination("WeatherDetails")
-
 }

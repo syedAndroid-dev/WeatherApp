@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">WeatherApp</string>
+    <string name="str_email_placeholder">Email id</string>
+    <string name="str_password_placeholder">Password</string>
+    <string name="str_login">Log in</string>
+    <string name="str_signup">Sign Up</string>
+    <string name="str_save">Save</string>
+    <string name="str_cancel">Cancel</string>
+
+    <string name="str_email_error">Please enter a valid registered email ID / mobile number</string>
+    <string name="str_password_error">Please enter a valid password</string>
+    <string name="str_forgotten_password">Forgotten password</string>
+    <string name="str_register_emailId_placeholder">Enter Registered Email ID / Mobile Number</string>
+    <string name="str_enter_otp_placeholder">Enter OTP Number</string>
+    <string name="str_enter_valid_otp_placeholder">Please enter a Valid OTP Number</string>
+
+    <string name="str_or">Or</string>
+
+    <string name="str_add_user">Add User</string>
+    <string name="str_type_here">Type here</string>
+    <string name="str_firstname">First Name</string>
+    <string name="str_lastname">Last Name</string>
+    <string name="str_email">Email</string>
+    <string name="str_firstname_placeholder">Please Enter First Name</string>
+    <string name="str_lastname_placeholder">Please Enter Last Name</string>
+
+    <string name="str_humidity">Humidity</string>
+    <string name="str_sunrise">SunRise</string>
+    <string name="str_sunset">SunSet</string>
+    <string name="str_wind_speed">WindSpeed</string>
+    <string name="str_weather_details">Weather Details</string>
 </resources>

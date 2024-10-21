@@ -5,7 +5,5 @@ package com.example.weatherapp.core.apiutils
 object EndPoints {
 
     //WeatherApp
-    const val LOGIN = "/data/2.5/onecall"
-
-
+    const val WEATHER = "/data/2.5/onecall"
 }

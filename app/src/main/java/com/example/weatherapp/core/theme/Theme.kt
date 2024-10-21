@@ -1,44 +1,49 @@
 package com.example.weatherapp.core.theme
 
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 
-val darkBlue = Color(0xFF085783)
-val DarkBlue40 = Color(0xFF009bbd)
-val greyNatural = Color(0xFF111827)
 
-val appLightBackGround = Brush.horizontalGradient(colors = listOf(DarkBlue40,darkBlue))
-val appDarkBackGround = Brush.horizontalGradient(colors = listOf(greyNatural,greyNatural))
-
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+val DarkColorScheme = darkColorScheme(
+    background = DarkBlue20,
+    onBackground = Color.White,
+    primary = DarkBlue99,
+    onPrimary = Color.White,
+    primaryContainer = DarkBlue10,
+    onPrimaryContainer = Color.White,
+    surface = DarkBlue10,
+    onSurface = DarkBlue99,
+    surfaceVariant = DarkBlue10,
+    secondary = DarkBlue10,
+    onSecondary = DarkBlue99,
+    secondaryContainer = greyNatural,
+    onSecondaryContainer = textWhite,
+    tertiary = easternBlue,
+    onTertiary = Color.White,
+    onTertiaryContainer = Color.Black
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
+val LightColorScheme = lightColorScheme(
+    background = DarkBlue96,
+    onBackground = DarkBlue90,
+    primary = DarkBlue30,
     onPrimary = Color.White,
+    primaryContainer = DarkBlue80,
+    onPrimaryContainer = DarkBlue10,
+    surface = Color.White,
+    onSurface = Grey20,
+    surfaceVariant = DarkBlue30,
+    secondary = DarkBlue30,
     onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    secondaryContainer = Color.White,
+    onSecondaryContainer = textBlack,
+    tertiary = darkBlue,
+    onTertiary = Color.Black,
+    onTertiaryContainer = Color.White
 )
 
 @Composable
@@ -49,11 +54,6 @@ fun WeatherAppTheme(
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
