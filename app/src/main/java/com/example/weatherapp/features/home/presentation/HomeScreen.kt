@@ -50,6 +50,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.weatherapp.core.theme.DarkBlue30
 import com.example.weatherapp.core.theme.Green30
+import com.example.weatherapp.core.utils.CommonLoader
 import kotlinx.coroutines.delay
 
 @Preview(showBackground = true)
@@ -103,12 +104,14 @@ fun HomeScreen(
                 }
             }
         }
-    ) {
+    ) { scaffoldPadding ->
         Column(
             modifier = modifier
                 .fillMaxSize()
                 .statusBarsPadding()
+                .padding(bottom = scaffoldPadding.calculateBottomPadding())
         ) {
+            CommonLoader(isLoading = isLoading)
             Card(
                 modifier = modifier.padding(start = 10.dp, end = 10.dp, top = 10.dp),
                 shape = RoundedCornerShape(10.dp),
@@ -207,12 +210,14 @@ fun UserDetail(
                 Text(
                     text = userDetails.userName,
                     fontSize = 16.sp,
-                    fontWeight = FontWeight.W500
+                    fontWeight = FontWeight.W500,
+                    color = Color.Black
                 )
                 Text(
                     text = userDetails.userEmail,
                     fontSize = 14.sp,
-                    fontWeight = FontWeight.W400
+                    fontWeight = FontWeight.W400,
+                    color = Color.Black
                 )
             }
         }

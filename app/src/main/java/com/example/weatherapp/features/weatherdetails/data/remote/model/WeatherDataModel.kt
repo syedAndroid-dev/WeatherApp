@@ -8,7 +8,7 @@ data class WeatherDataModel(
     @SerialName("current")
     val current: Current,
     @SerialName("daily")
-    val daily: List<Daily>,
+    val daily: List<Daily?>,
     @SerialName("hourly")
     val hourly: List<Hourly>,
     @SerialName("lat")

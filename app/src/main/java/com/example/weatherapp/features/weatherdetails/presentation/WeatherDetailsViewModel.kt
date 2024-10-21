@@ -3,12 +3,15 @@ package com.example.weatherapp.features.weatherdetails.presentation
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.core.apiutils.Resource
+import com.example.weatherapp.core.navigation.Destination
 import com.example.weatherapp.core.utils.WeatherType
 import com.example.weatherapp.core.utils.customesnackbar.SnackBarController
 import com.example.weatherapp.core.utils.customesnackbar.SnackBarEvent
+import com.example.weatherapp.core.utils.getFormattedSunriseTime
 import com.example.weatherapp.core.utils.valueOrDefault
 import com.example.weatherapp.features.BaseViewModel
 import com.example.weatherapp.features.weatherdetails.data.remote.repository.WeatherDetailsRepository
+import com.example.weatherapp.manager.datastoremanager.DataStoreManagerImpl.DataStoreKeys.KEY_IS_LOGGED_IN
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -37,6 +40,15 @@ class WeatherDetailsViewModel @Inject constructor(
             }
 
             WeatherDetailsEvents.OnLogOutClicked -> {
+                viewModelScope.launch{
+                    appNavigator.tryNavigateTo(
+                        route = Destination.LoginScreen,
+                        popUpToRoute = Destination.LoginScreen,
+                        inclusive = true
+                    )
+                    SnackBarController.sendEvent(event = SnackBarEvent(message = "LogOut SuccessFully.."))
+                    dataStorePreference.putPreference(key = KEY_IS_LOGGED_IN,false)
+                }
 
             }
         }
@@ -44,11 +56,12 @@ class WeatherDetailsViewModel @Inject constructor(
 
     private fun getWeatherDetails() {
         viewModelScope.launch {
+            _weatherDetailsState.update { it.copy(isLoading = true)}
             val weatherDetails = weatherDetailsRepository.getWeatherDetails()
             when (weatherDetails) {
                 is Resource.Success -> {
                     val data = weatherDetails.data
-                    Log.e("weatherdetails","${data}")
+                    Log.e("weatherdetails","$data")
                     _weatherDetailsState.update {
                         it.copy(
                             isLoading = false,
@@ -58,8 +71,8 @@ class WeatherDetailsViewModel @Inject constructor(
                             lastUpDateTime = "",
                             humidity = "${weatherDetails.data?.current?.humidity}",
                             windSpeed = "${weatherDetails.data?.current?.windSpeed}",
-                            sunset = "${weatherDetails.data?.current?.sunset}",
-                            sunrise = "${weatherDetails.data?.current?.sunrise}"
+                            sunset = getFormattedSunriseTime(timestamp = weatherDetails.data?.current?.sunset ?: 0L),
+                            sunrise = getFormattedSunriseTime(timestamp =weatherDetails.data?.current?.sunrise ?: 0L)
                         )
                     }
                 }
@@ -68,6 +81,7 @@ class WeatherDetailsViewModel @Inject constructor(
                     SnackBarController.sendEvent(event = SnackBarEvent(message = "SomeThing Went Wrong"))
                 }
             }
+            _weatherDetailsState.update { it.copy(isLoading = false)}
         }
     }
 }

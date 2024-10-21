@@ -20,9 +20,9 @@ data class Current(
     @SerialName("rain")
     val rain: Rain,
     @SerialName("sunrise")
-    val sunrise: Int,
+    val sunrise: Long,
     @SerialName("sunset")
-    val sunset: Int,
+    val sunset: Long,
     @SerialName("temp")
     val temp: Double,
     @SerialName("uvi")

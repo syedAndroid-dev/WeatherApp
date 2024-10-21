@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
@@ -27,10 +28,13 @@ private fun SplashScreenPreview() {
 }
 
 @Composable
-fun SplashScreen(modifier: Modifier = Modifier) {
+fun SplashScreen(
+    modifier: Modifier = Modifier,
+    splashViewModel: SplashViewModel = hiltViewModel()
+) {
     val preLoaderLottieAnimation by rememberLottieComposition(
         spec = LottieCompositionSpec.RawRes(
-            R.raw.splash_weather
+            R.raw.rain
         )
     )
     val preLoaderProgress by animateLottieCompositionAsState(
@@ -45,18 +49,11 @@ fun SplashScreen(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
-        Box(
-            modifier = modifier
-                .fillMaxSize()
-                .shadow(elevation = 8.dp, shape = RoundedCornerShape(8.dp)),
-        ){
-            LottieAnimation(
-                composition = preLoaderLottieAnimation,
-                progress = preLoaderProgress,
-                modifier = modifier.size(120.dp),
-                enableMergePaths = true
-            )
-        }
+        LottieAnimation(
+            composition = preLoaderLottieAnimation,
+            progress = preLoaderProgress,
+            modifier = modifier.size(120.dp),
+            enableMergePaths = true
+        )
     }
 }

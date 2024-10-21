@@ -58,6 +58,7 @@ class AddUsersViewModel @Inject constructor(
 
     private fun onAddUserDetails() {
         viewModelScope.launch {
+            _addUserDetailsState.update { it.copy(isLoading = true) }
             if(isUserDetailsValid()){
                 addUsersRepository.addUser(
                     userDetails = UserDetails(
@@ -71,6 +72,7 @@ class AddUsersViewModel @Inject constructor(
             } else {
                 SnackBarController.sendEvent(event = SnackBarEvent(message = "Please Enter Valid Details.."))
             }
+            _addUserDetailsState.update { it.copy(isLoading = true) }
         }
     }
 

@@ -8,6 +8,9 @@ object Constants {
     const val USER_ID = "UserId"
     const val USER_NAME = "UserName"
     const val USER_EMAIL = "UserEmail"
+
+    const val CRED_EMAIL ="testapp@google.com"
+    const val CRED_PASSWORD ="123456"
 }
 
 enum class WeatherType{

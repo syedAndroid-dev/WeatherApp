@@ -49,6 +49,7 @@ class HomeViewModel @Inject constructor(
 
     private fun getSavedUsers() {
         viewModelScope.launch {
+            _homeScreenState.update { it.copy(isLoading = false) }
             homeRepository.getUserDetails().collectLatest { user ->
                 Log.e("saved users", "${user}")
                 _homeScreenState.update {

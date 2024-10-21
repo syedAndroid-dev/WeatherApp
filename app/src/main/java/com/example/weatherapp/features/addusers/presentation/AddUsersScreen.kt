@@ -214,7 +214,8 @@ fun AddUsersScreen(
                         unfocusedContainerColor = Color.White,
                         disabledIndicatorColor = Color.Transparent,
                         errorIndicatorColor = Color.Transparent,
-                        disabledContainerColor = grey50
+                        disabledContainerColor = grey50,
+                        focusedTextColor = lightGrey
                     ),
                     shape = RoundedCornerShape(10.dp),
                     textStyle = TextStyle(
@@ -269,7 +270,8 @@ fun AddUsersScreen(
                         unfocusedContainerColor = Color.White,
                         disabledIndicatorColor = Color.Transparent,
                         errorIndicatorColor = Color.Transparent,
-                        disabledContainerColor = grey50
+                        disabledContainerColor = grey50,
+                        focusedTextColor = lightGrey
                     ),
                     shape = RoundedCornerShape(10.dp),
                     textStyle = TextStyle(
@@ -324,7 +326,8 @@ fun AddUsersScreen(
                         unfocusedContainerColor = Color.White,
                         disabledIndicatorColor = Color.Transparent,
                         errorIndicatorColor = Color.Transparent,
-                        disabledContainerColor = grey50
+                        disabledContainerColor = grey50,
+                        focusedTextColor = lightGrey
                     ),
                     shape = RoundedCornerShape(10.dp),
                     textStyle = TextStyle(

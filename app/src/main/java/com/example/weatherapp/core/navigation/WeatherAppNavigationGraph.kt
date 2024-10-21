@@ -87,7 +87,7 @@ fun WeatherAppNavigationGraph(
                 .weight(1f)
                 .background(brush = if (isSystemInDarkTheme()) appDarkBackGround else appLightBackGround),
             navController = navController,
-            startDestination = Destination.HomeScreen,
+            startDestination = Destination.SplashScreen,
             enterTransition = {
                 slideIntoContainer(
                     AnimatedContentTransitionScope.SlideDirection.Left,

@@ -20,7 +20,7 @@ data class Hourly(
     @SerialName("pressure")
     val pressure: Int,
     @SerialName("rain")
-    val rain: Rain,
+    val rain: Rain? = null,
     @SerialName("temp")
     val temp: Double,
     @SerialName("uvi")

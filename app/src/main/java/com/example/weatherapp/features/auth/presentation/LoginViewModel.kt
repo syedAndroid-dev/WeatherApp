@@ -2,11 +2,14 @@ package com.example.weatherapp.features.auth.presentation
 
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.core.navigation.Destination
+import com.example.weatherapp.core.utils.Constants.CRED_EMAIL
+import com.example.weatherapp.core.utils.Constants.CRED_PASSWORD
 import com.example.weatherapp.core.utils.customesnackbar.SnackBarController
 import com.example.weatherapp.core.utils.customesnackbar.SnackBarEvent
 import com.example.weatherapp.core.utils.isValidEmail
 import com.example.weatherapp.core.utils.isValidPassword
 import com.example.weatherapp.features.BaseViewModel
+import com.example.weatherapp.manager.datastoremanager.DataStoreManagerImpl.DataStoreKeys.KEY_IS_LOGGED_IN
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -36,14 +39,24 @@ class LoginViewModel @Inject constructor(): BaseViewModel() {
 
     private fun onSubmitClicked(){
         viewModelScope.launch {
+            _loginState.update { it.copy(isLoading = true) }
             if(isValidUserName(userEmail = loginState.value.emailId, password = loginState.value.password)){
-                appNavigator.tryNavigateTo(
-                    route = Destination.HomeScreen,
-                    inclusive = true
-                )
+                if(loginState.value.emailId == CRED_EMAIL && loginState.value.password == CRED_PASSWORD){
+                    appNavigator.tryNavigateTo(
+                        route = Destination.HomeScreen,
+                        popUpToRoute = Destination.LoginScreen,
+                        inclusive = true
+                    )
+                    SnackBarController.sendEvent(event = SnackBarEvent(message = "Login SuccessFully.."))
+                    dataStorePreference.putPreference(key = KEY_IS_LOGGED_IN,true)
+                } else {
+                    SnackBarController.sendEvent(event = SnackBarEvent(message = "User Not Found"))
+                }
+
             } else {
                 SnackBarController.sendEvent(event = SnackBarEvent(message = "Please Enter Valid Credentials.."))
             }
+            _loginState.update { it.copy(isLoading = false) }
         }
     }
     private fun isValidUserName(userEmail : String,password: String) : Boolean{

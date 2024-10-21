@@ -26,7 +26,7 @@ data class Daily(
     @SerialName("pressure")
     val pressure: Int,
     @SerialName("rain")
-    val rain: Double,
+    val rain: Double?= null,
     @SerialName("sunrise")
     val sunrise: Int,
     @SerialName("sunset")

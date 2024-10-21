@@ -1,5 +1,6 @@
 package com.example.weatherapp.features.weatherdetails.presentation
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Logout
@@ -101,6 +103,7 @@ fun WeatherScreen(
             .fillMaxSize()
             .background(color = Color.White),
     ) {
+        Log.e("isLoading","$isLoading")
         CommonLoader(
             isLoading = isLoading
         )
@@ -146,11 +149,19 @@ fun WeatherScreen(
             WeatherAnimatedImage(
                 weatherType = weatherType
             )
-            Text(
-                text = currentTemp,
-                fontSize = 24.sp,
-                fontWeight = FontWeight.ExtraBold,
-            )
+            Row {
+                Text(
+                    text = currentTemp,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                )
+                Card (
+                    modifier = Modifier.size(8.dp),
+                    shape = CircleShape,
+                    border = _root_ide_package_.androidx.compose.foundation.BorderStroke(width = 2.dp, color = Color.Black)
+                ){  }
+            }
+
             Spacer(modifier = modifier.padding(6.dp))
             Text(
                 text = weatherLocation,
